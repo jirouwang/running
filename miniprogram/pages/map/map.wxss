@@ -1,0 +1,46 @@
+/* pages/map/map.wxss */
+.warn-page {
+  background-color: #eee;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.warn-tip {
+  font-size: 40rpx;
+  margin-bottom: 50rpx;
+}
+
+.map-page {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+map {
+  width: 100vw;
+  height: 100vh;
+}
+.running-info {
+  width: 90%;
+  height: 300rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: rgb(102, 70, 70);
+  border-radius: 30rpx 30rpx 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.handle-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.handle-button {
+  flex: 1;
+}

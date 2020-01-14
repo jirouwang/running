@@ -1,0 +1,29 @@
+<!--pages/map/map.wxml-->
+<!-- <view wx:if="{{!isAuthorized}}" class="warn-page">
+  <view class="warn-tip">无法获得位置信息则无法开始跑步</view>
+  <button bind:tap="getLocation" type="primary">点击授权位置信息</button>
+</view> -->
+
+<view class="map-page">
+  <map
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    polyline="{{polyline}}"
+    show-location="true"
+  />
+  
+  <view class="running-info">
+    <view></view>
+    <view class="info">
+      <view>跑步时长为: {{runtime}}</view>
+      <view>跑步路程为: {{distance}}</view>
+    </view>
+    <view class="handle-item">
+      <button class="handle-button" bind:tap="clickStart" style="background-color: red">开始</button>
+      <button class="handle-button" bind:tap="clickEnd" style="background-color: blue">结束</button>
+    </view>
+  </view>
+  
+</view>
+
+
