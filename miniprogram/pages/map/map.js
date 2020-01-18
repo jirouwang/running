@@ -1,6 +1,26 @@
 let app = getApp();
+const db = wx.cloud.database();
+const userListDB = db.collection('user');
 const points = []
 let runtime = 0
+let isFirstCountDistance = true
+
+function format(time) {
+  if(time<60) {
+    let seconds = time.toString().padStart(2,"0")
+    return `00:00:${seconds}`
+  }else if(60<=time<3600) {
+    let seconds = (time % 60).toString().padStart(2, "0")
+    let minutes = Math.floor(time / 60).toString().padStart(2, "0")
+    return `00:${minutes}:${seconds}`
+  }else if(time>=3600) {
+    let seconds = (time % 60).toString().padStart(2, "0")
+    let minutes = ((time - Math.floor(time / 3600) * 3600) / 60).toString().padStart(2, "0")
+    let hours = Math.floor(time / 3600).toString().padStart(2, "0")
+    return `${hours}:${minutes}:${seconds}`
+  }
+}
+
 Page({
   data: {
     id: '',
@@ -16,7 +36,11 @@ Page({
     }],
     runtime: 0,
     distance: 0,
-    isAuthorized: false
+    isAuthorized: false,
+    showRunInfo: true,
+    showRunInfoBtn: '-',
+    isPaused: true,
+    isRanToday: false
   },
   onLoad: function () {
     this.setData({
@@ -24,6 +48,7 @@ Page({
       longitude: app.globalData.initLongitude,
       latitude: app.globalData.initLatitude
     })
+    // console.log(app.globalData.checkRunningToday)
   },
   distance(la1, lo1, la2, lo2) {
     if (la1 === 0 || lo1 === 0) {
@@ -39,21 +64,102 @@ Page({
     let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
     s = s * 6378.137;//地球半径
     s = Math.round(s * 10000) / 10000;
+    if (isFirstCountDistance&&s*1000>5) {
+      s = 0;
+      isFirstCountDistance = false
+    }
     return s * 1000
   },
-  clickEnd() {
-    console.log(this.data.latitude, this.data.longitude)
+  clickStop() {
     this.data.id && clearInterval(this.data.id)
+    this.setData({
+      id: '',
+      isPaused: true
+    })
+  },
+  clickEnd() {
+    // console.log(this.data.latitude, this.data.longitude) 
+    this.data.id && clearInterval(this.data.id)
+    this.setData({
+      id: ''
+    })
+    if(this.data.runtime===0) {
+      wx.showModal({
+        title: '提示',
+        content: '请先点击开始按钮进行跑步',
+        showCancel: false,
+        success: () => {
+          return
+        }
+      })
+      return
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确定结束今天的跑步吗',
+      cancelText: '重新跑步',
+      success: (res) => {
+        if(res.confirm) {
+          wx.cloud.callFunction({
+            name: 'updateInfo',
+            data: {
+              openid: app.globalData.openid,
+              runtime: format(this.data.runtime),
+              distance: this.data.distance
+            }
+          }).then((res) => {
+            wx.showToast({
+              title: '保存跑步数据成功!',
+              duration: 1500,
+              mask: true,
+              success: () => {
+                this.setData({
+                  runtime: 0,
+                  distance: 0,
+                  isPaused: true
+                })
+              }
+            })
+            
+          })
+        }
+        if(res.cancel) {
+          this.setData({
+            runtime: 0,
+            distance: 0,
+            isPaused: true,
+            isRanToday: false
+          })
+        }
+      }
+    })
+   
+    this.setData({
+      isRanToday: true
+    })
+    
   },
   clickStart() {
+    this.isRanToday()
+    if(this.data.isRanToday || app.globalData.checkRunningToday) {
+      wx.showModal({
+        title: '温馨提示',
+        showCancel: false,
+        content: '今天已经跑步了,休息一下,明天继续',
+        success: () => {
+          return
+        }
+      })
+      return
+    }
     // console.log(app.globalData.initLatitude)
+    if(this.data.id) return
     const id = setInterval(() => {
       wx.getLocation({
         type: 'gcj02',
         success: (res) => {
           const latitude = res.latitude
           const longitude = res.longitude
-          const speed = res.speed
           points.push({
             latitude,
             longitude
@@ -70,7 +176,7 @@ Page({
               borderColor: 'green',
               width: 5
             }],
-            distance: (Number(this.data.distance) + Number(distance)).toFixed(2)
+            distance: (Number(this.data.distance) + Number(distance)).toFixed(1)
           })
         }
       })
@@ -79,7 +185,8 @@ Page({
       })
     }, 1000)
     this.setData({
-      id
+      id,
+      isPaused: false
     })
   },
   getLocation() {
@@ -126,5 +233,38 @@ Page({
         }
       }
     })
+  },
+  isRanToday() {
+    userListDB.where({
+      _openid: app.globalData.openid,
+    }).field({
+      runInfos: true
+    }).get({
+      success: (res) => {
+        let runInfos = res.data[0].runInfos
+        console.log(runInfos)
+        runInfos.forEach((item) => {
+          let date = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
+          if (item.date == date) {
+            // console.log(111111111111111111)
+            app.globalData.checkRunningToday = true
+            return
+          }
+        })
+      }
+    })
+  },
+  showInfoBtn() {
+    if(this.data.showRunInfo) {
+      this.setData({
+        showRunInfoBtn: '+',
+        showRunInfo: !this.data.showRunInfo
+      })
+    } else {
+      this.setData({
+        showRunInfoBtn: '-',
+        showRunInfo: !this.data.showRunInfo
+      })
+    }
   }
 })

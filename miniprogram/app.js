@@ -14,7 +14,8 @@ App({
       name: '',
       initLongitude: 0,
       initLatitude: 0,
-      isAuthorized: false
+      isAuthorized: false,
+      checkRunningToday: false
     }
 
     wx.cloud.callFunction({

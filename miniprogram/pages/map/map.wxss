@@ -30,11 +30,12 @@ map {
   left: 0;
   right: 0;
   margin: 0 auto;
-  background-color: rgb(102, 70, 70);
+  background-color: rgb(160, 153, 153);
   border-radius: 30rpx 30rpx 0 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: .6s;
 }
 .handle-item {
   width: 100%;
@@ -43,4 +44,32 @@ map {
 }
 .handle-button {
   flex: 1;
+}
+.show-info-button {
+  display: inline-block;
+  width: 80rpx;
+  height: 40rpx;
+  background-color: red;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40rpx;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 35rpx;
+  font-size: 50rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+.head-sculpture {
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 60rpx;
+}
+.info {
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 100rpx;
 }

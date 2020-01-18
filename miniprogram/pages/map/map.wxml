@@ -12,14 +12,19 @@
     show-location="true"
   />
   
-  <view class="running-info">
-    <view></view>
+  <view class="running-info" style="bottom: {{showRunInfo ? '0' : '-300rpx'}};">
+    <view class="show-info-button" bind:tap="showInfoBtn">{{showRunInfoBtn}}</view>
     <view class="info">
-      <view>跑步时长为: {{runtime}}</view>
-      <view>跑步路程为: {{distance}}</view>
+      <open-data type="userAvatarUrl" class="head-sculpture"></open-data>
+      <view style="width: 320rpx;">
+        <wxs src="../../wxs/format.wxs" module="format"/>
+        <view style="position: relative">跑步时长为: <text style="position: absolute;right:0;">{{format.format(runtime)}}</text></view>
+        <view style="position: relative">跑步路程为: <text style="position: absolute;right:0;">{{distance}}m</text></view>
+      </view>
     </view>
     <view class="handle-item">
-      <button class="handle-button" bind:tap="clickStart" style="background-color: red">开始</button>
+      <button wx:if="{{isPaused}}" class="handle-button" bind:tap="clickStart" style="background-color: red">开始</button>
+      <button wx:else class="handle-button" bind:tap="clickStop" style="background-color: red">暂停</button>
       <button class="handle-button" bind:tap="clickEnd" style="background-color: blue">结束</button>
     </view>
   </view>

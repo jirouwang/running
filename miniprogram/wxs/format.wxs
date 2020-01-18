@@ -1,0 +1,27 @@
+function format(time) {
+  if (time < 60) {
+    var seconds = timeformat(time.toString())
+    return '00:00:'+seconds
+  } else if (60 <= time < 3600) {
+    var seconds = timeformat((time % 60).toString())
+    var minutes = timeformat(Math.floor(time / 60).toString())
+    return '00:'+minutes+':'+seconds
+  } else if (time >= 3600) {
+    var seconds = timeformat((time % 60).toString())
+    var minutes = timeformat(((time - Math.floor(time / 3600) * 3600) / 60).toString())
+    var hours = timeformat(Math.floor(time / 3600).toString())
+    return hours+':'+minutes+':'+seconds
+  }
+}
+
+function timeformat(time) {
+  if(time.length==1) {
+    return "0"+time
+  }else {
+    return time
+  }
+}
+
+module.exports = {
+  format: format
+}

@@ -13,15 +13,15 @@ Page({
   data: {
 
   },
-  //输入学号
+
   inputStudentID(event) {
     studentID = event.detail.value;
   },
-  //输入姓名
+
   inputName(event) {
     name = event.detail.value;
   },
-  //注册
+
   getInitLocation() {
     wx.getLocation({
       type: 'gcj02',
@@ -75,6 +75,7 @@ Page({
           console.log(userInfos[0].name == name)
           if (userInfos[0].name == name && userInfos[0].studentID == studentID) {
             console.log('已经登录,跳转到跑步页面')
+            this.isRanToday()
             this.getInitLocation()
 
           } else {
@@ -115,11 +116,33 @@ Page({
       data: {
         // openid: app.globalData.openid,
         studentID: studentID,
-        name: name
+        name: name,
+        runInfos: []
       }
     }).then(res => {
       console.log('首次登陆,跳转到跑步页面')
+      this.isRanToday()
       this.getInitLocation()
     })
   },
+  isRanToday() {
+    userListDB.where({
+      _openid: app.globalData.openid,
+    }).field({
+      runInfos: true
+    }).get({
+      success: (res) => {
+        let runInfos = res.data[0].runInfos
+        console.log(runInfos)
+        runInfos.forEach((item) => {
+          let date = `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
+          if (item.date == date) {
+            // console.log(2222222222222222222)
+            app.globalData.checkRunningToday = true
+            return
+          }
+        })
+      }
+    })
+  }
 })
