@@ -18,6 +18,12 @@ App({
       checkRunningToday: false
     }
 
+    // console.log(123)
+    // wx.switchTab({
+    //   url: '../pages/map/map',
+    // })
+    // console.log(456)
+
     wx.cloud.callFunction({
       name: 'login',
       data: {},

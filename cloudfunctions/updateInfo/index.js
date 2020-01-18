@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database();
 const userListDB = db.collection('user');
-const _ = db.command
+const _ = db.command;
 
 
 

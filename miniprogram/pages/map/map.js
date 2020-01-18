@@ -116,6 +116,12 @@ Page({
                 this.setData({
                   runtime: 0,
                   distance: 0,
+                  polyline: [{
+                    points: [],
+                    color: 'red',
+                    borderColor: 'green',
+                    width: 5
+                  }],
                   isPaused: true
                 })
               }
@@ -154,6 +160,18 @@ Page({
     }
     // console.log(app.globalData.initLatitude)
     if(this.data.id) return
+    // if(app.globalData.initLatitude == 0) {
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        this.setData({
+          longitude: res.longitude,
+          latitude: res.latitude,
+          // isAuthorized: true
+        })
+      }
+    })
+    // }
     const id = setInterval(() => {
       wx.getLocation({
         type: 'gcj02',

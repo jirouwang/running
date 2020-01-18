@@ -64,11 +64,13 @@ Page({
     app.globalData.name = name
     // 查询用户是否已经登陆过
     userListDB.where({
-      _openid: app.globalData.openid // 填入当前用户 openid
+      _openid: app.globalData.openid 
     }).get({
       success: (res) => {
         let userInfos = res.data;
         console.log(1)
+        // 不同微信第一次登录注册的时候没有检测学号和姓名是否重复!!!!!!!!!
+        // 可以另外写一个utils文件写查重的功能
         if (userInfos && userInfos.length > 0) {
           console.log(2)
           console.log(userInfos)
@@ -77,7 +79,6 @@ Page({
             console.log('已经登录,跳转到跑步页面')
             this.isRanToday()
             this.getInitLocation()
-
           } else {
             if (studentID == null || name == null) {
               console.log('请输入完全')
@@ -95,6 +96,7 @@ Page({
               showCancel: false
             })
           }
+          // 这里加checkUserInfo的判断
         } else {
           this.saveuserinfo();
         }
@@ -102,7 +104,7 @@ Page({
     })
   },
   saveuserinfo() {
-    let that = this;
+    // let that = this;
     if (studentID == null || name == null) {
       console.log('请输入完全')
       wx.showModal({

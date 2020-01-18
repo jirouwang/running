@@ -1,10 +1,10 @@
 <!--pages/map/map.wxml-->
-<!-- <view wx:if="{{!isAuthorized}}" class="warn-page">
+<view wx:if="{{!isAuthorized}}" class="warn-page">
   <view class="warn-tip">无法获得位置信息则无法开始跑步</view>
   <button bind:tap="getLocation" type="primary">点击授权位置信息</button>
-</view> -->
+</view>
 
-<view class="map-page">
+<view class="map-page" wx:else>
   <map
     longitude="{{longitude}}"
     latitude="{{latitude}}"
