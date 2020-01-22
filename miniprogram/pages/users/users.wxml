@@ -1,2 +1,23 @@
 <!--miniprogram/pages/users/users.wxml-->
-<text>miniprogram/pages/users/users.wxml</text>
+<view class="main">
+  <view class="title"><text class="title-text" bindtap="showRunInfos">今日跑步排名({{date}})</text></view>
+  <view class="head">
+    <text style="margin-left: 30rpx;">序号</text>
+    <text style="margin-left: 85rpx;" bindtap="chNameStuID">姓名/学号</text>
+    <text style="margin-left: 120rpx;">时间</text>
+    <text style="margin-left: 120rpx;">路程</text>
+  </view>
+
+  <!-- distance必须为number类型 -->
+  <view class="content">
+    <view wx:for="{{userInfo}}" class="content-item" wx:key="index">
+      <text style="width: 130rpx; text-align:center;">{{index+1}}</text>
+      <!-- /{{item.studentID}} -->
+      <text style="flex: 1.6; text-align:center; padding-right: 40rpx;">{{showName?item.name:item.studentID}}</text>
+      <text style="flex: 1;">{{item.runInfo.runtime}}</text>
+      <text style="flex: 1; text-align:right; padding-right: 42rpx;">{{item.runInfo.distance}}m</text>
+    </view>
+    <!-- <view wx:for="{{30}}" class="scrollViewItem2">{{item}}</view> -->
+  </view>
+</view>
+

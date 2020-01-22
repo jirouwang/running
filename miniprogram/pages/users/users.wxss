@@ -1,1 +1,73 @@
 /* miniprogram/pages/users/users.wxss */
+.main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.title {
+  display: inline-block;
+  text-align: center;
+  width: 100vw;
+  font-size: 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: rgb(53, 51, 51);
+}
+.title-text {
+  display: inline-block;
+  color: rgba(255,255,255,.7);
+  width: 70%;
+  height: 100%;
+  font-size: 36rpx;
+  background-color: rgba(160, 153, 153,.5);
+}
+.head {
+  display: flex;
+  justify-content: flex-start;
+  padding: 25rpx 0; 
+  color: rgba(255,255,255,.7);
+  background-color: rgba(46, 44, 45, 0.911);
+}
+.content {
+  /* flex: 1; */
+  /* box-sizing: border-box; */
+  height: 100vh-170rpx;
+  width: 100vw;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,.1);
+}
+.content-item {
+  position: relative;
+  height: 100rpx;
+  line-height: 100rpx;
+  /* padding: 0 50rpx 0 80rpx; */
+  /* background-color: rgba(0,0,0,.2); */
+  display: flex;
+}
+.content-item:nth-child(odd) {
+  background-color: rgba(0,0,0,.2);
+}
+.content-item:nth-child(even) {
+  background-color: rgba(0,0,0,.3);
+}
+.content-item:nth-child(1) {
+  background-color: rgba(204, 3, 3, 0.832)
+}
+.content-item:nth-child(1)::before {
+  content: '';
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  left: 15rpx;
+  /* background-color: greenyellow; */
+  background-image: url(../../assets/image/冠军.png);
+}
+.content-item:nth-child(2) {
+  background-color: rgba(204, 67, 3, 0.832)
+}
+.content-item:nth-child(3) {
+  background-color: rgba(248, 207, 26, 0.632)
+}

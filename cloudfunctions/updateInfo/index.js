@@ -18,7 +18,7 @@ exports.main = async (event, context) => {
     data: {
       runInfos: _.unshift({
         runtime: event.runtime,
-        distance: event.distance,
+        distance: Number(event.distance),
         date: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
       })
     }

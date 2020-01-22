@@ -109,7 +109,7 @@ Page({
             }
           }).then((res) => {
             wx.showToast({
-              title: '保存跑步数据成功!',
+              title: '保存数据成功',
               duration: 1500,
               mask: true,
               success: () => {

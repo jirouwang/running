@@ -1,4 +1,4 @@
-
+import checkUserInfo from '../../utils/utils.js'
 let app = getApp();
 // 获取数据库引用
 const db = wx.cloud.database();
@@ -68,7 +68,7 @@ Page({
     }).get({
       success: (res) => {
         let userInfos = res.data;
-        console.log(1)
+        // console.log(1)
         // 不同微信第一次登录注册的时候没有检测学号和姓名是否重复!!!!!!!!!
         // 可以另外写一个utils文件写查重的功能
         if (userInfos && userInfos.length > 0) {
@@ -98,7 +98,25 @@ Page({
           }
           // 这里加checkUserInfo的判断
         } else {
-          this.saveuserinfo();
+          let res = checkUserInfo(studentID,name)
+          res.then((res)=>{
+            console.log(res)
+            if (res == 1) {
+              wx.showModal({
+                title: '提示',
+                content: '学号已被注册',
+                showCancel: false
+              })
+            } else if (res == 2) {
+              wx.showModal({
+                title: '提示',
+                content: '姓名已被注册',
+                showCancel: false
+              })
+            } else {
+              this.saveuserinfo();
+            } 
+          })  
         }
       }
     })
