@@ -48,7 +48,7 @@ Page({
     let nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
     if (!studentIDReg.test(studentID)) {
       wx.showModal({
-        content: '请输入正确的学号',
+        content: '请输入正确的学号,格式:160424****',
         showCancel: false
       })
       return

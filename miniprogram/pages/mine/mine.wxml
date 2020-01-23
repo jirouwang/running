@@ -1,2 +1,11 @@
 <!--miniprogram/pages/mine/mine.wxml-->
-<text>miniprogram/pages/mine/mine.wxml</text>
+<view class="user">
+  <view class="user-info">
+    <view class="user-url" bindtap="showname"><open-data type="userAvatarUrl"></open-data></view>
+    <open-data type="userNickName"></open-data>
+  </view>
+  <view class="user-info-run">
+    <text>姓名: {{name}}</text>
+    <text>学号: {{studentID}}</text>
+  </view>
+</view>

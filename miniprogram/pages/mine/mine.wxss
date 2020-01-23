@@ -1,1 +1,32 @@
 /* miniprogram/pages/mine/mine.wxss */
+.user {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.user-info {
+  height: 350rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.user-url {
+  display: inline-block;
+  width: 250rpx;
+  height: 250rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.user-info-run {
+  display: flex;
+  justify-content: space-around;
+  height: 35rpx;
+  line-height: 35rpx;
+  padding: 50rpx 70rpx;
+  margin: 0 40rpx;
+  margin-top: 40rpx;
+  border-top: 1px solid rgba(0,0,0,.2);
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}

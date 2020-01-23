@@ -133,6 +133,12 @@ Page({
           this.setData({
             runtime: 0,
             distance: 0,
+            polyline: [{
+              points: [],
+              color: 'red',
+              borderColor: 'green',
+              width: 5
+            }],
             isPaused: true,
             isRanToday: false
           })

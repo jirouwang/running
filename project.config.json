@@ -62,6 +62,13 @@
 					"id": -1,
 					"name": "pages/users/users",
 					"pathName": "pages/users/users",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
 					"scene": null
 				}
 			]

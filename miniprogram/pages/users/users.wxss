@@ -26,14 +26,15 @@
 .head {
   display: flex;
   justify-content: flex-start;
-  padding: 25rpx 0; 
+  height: 80rpx;
+  line-height: 80rpx;
   color: rgba(255,255,255,.7);
   background-color: rgba(46, 44, 45, 0.911);
 }
 .content {
-  /* flex: 1; */
+  flex: 1;
   /* box-sizing: border-box; */
-  height: 100vh-170rpx;
+  /* height: 100vh-200rpx; */
   width: 100vw;
   overflow-y: auto;
   background-color: rgba(0,0,0,.1);
@@ -55,19 +56,42 @@
 .content-item:nth-child(1) {
   background-color: rgba(204, 3, 3, 0.832)
 }
-.content-item:nth-child(1)::before {
-  content: '';
-  display: inline-block;
-  width: 100rpx;
-  height: 100rpx;
-  position: absolute;
-  left: 15rpx;
-  /* background-color: greenyellow; */
-  background-image: url(../../assets/image/冠军.png);
-}
 .content-item:nth-child(2) {
   background-color: rgba(204, 67, 3, 0.832)
 }
 .content-item:nth-child(3) {
   background-color: rgba(248, 207, 26, 0.632)
+}
+.content-num {
+  color: rgba(0,0,0,.7);
+}
+.content-item:nth-child(1) .content-num {
+  color: rgb(42, 243, 2);
+  font-size: 50rpx;
+  font-weight: 700;
+}
+.content-item:nth-child(2) .content-num {
+  color: rgba(0, 159, 252, 0.973);
+  font-size: 44rpx;
+  font-weight: 600;
+}
+.content-item:nth-child(3) .content-num {
+  color: rgba(243, 38, 38, 0.973);
+  font-size: 40rpx;
+  font-weight: 550;
+}
+.content-item:nth-child(1) .content-name {
+  color: rgb(42, 243, 2);
+  /* font-size: 50rpx; */
+  font-weight: 700;
+}
+.content-item:nth-child(2) .content-name {
+  color: rgba(0, 159, 252, 0.973);
+  /* font-size: 44rpx; */
+  font-weight: 600;
+}
+.content-item:nth-child(3) .content-name {
+  color: rgba(243, 38, 38, 0.973);
+  /* font-size: 40rpx; */
+  font-weight: 550;
 }
