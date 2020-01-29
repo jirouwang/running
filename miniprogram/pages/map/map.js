@@ -4,6 +4,7 @@ const userListDB = db.collection('user');
 const points = []
 let runtime = 0
 let isFirstCountDistance = true
+let isFirstStart = true
 
 function format(time) {
   if(time<60) {
@@ -40,9 +41,14 @@ Page({
     showRunInfo: true,
     showRunInfoBtn: '-',
     isPaused: true,
-    isRanToday: false
+    isRanToday: false,
+    isTipShow: true
   },
+  // onshow: function() {
+  //   onLoad();
+  // },
   onLoad: function () {
+    console.log(app.globalData.studentID,app.globalData.name)
     this.setData({
       isAuthorized: app.globalData.isAuthorized,
       longitude: app.globalData.initLongitude,
@@ -130,6 +136,7 @@ Page({
           })
         }
         if(res.cancel) {
+          isFirstStart = true;
           this.setData({
             runtime: 0,
             distance: 0,
@@ -153,6 +160,7 @@ Page({
   },
   clickStart() {
     this.isRanToday()
+    // 分为两种情况,一种是跑了又马上点开始跑步的,一种是跑了之后隔了一段时间重新登录后又点击开始跑步的
     if(this.data.isRanToday || app.globalData.checkRunningToday) {
       wx.showModal({
         title: '温馨提示',
@@ -167,6 +175,20 @@ Page({
     // console.log(app.globalData.initLatitude)
     if(this.data.id) return
     // if(app.globalData.initLatitude == 0) {
+    if (isFirstStart) {
+      wx.showToast({
+        title: '开始跑步!!',
+        mask: true,
+        image: '../../assets/image/加油.png'
+      })
+      isFirstStart = false
+    }else {
+      wx.showToast({
+        title: '继续跑步!!',
+        mask: true,
+        image: '../../assets/image/加油.png'
+      })
+    }
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
@@ -289,6 +311,18 @@ Page({
         showRunInfoBtn: '-',
         showRunInfo: !this.data.showRunInfo
       })
+    }
+  },
+  tipOut() {
+    this.setData({
+      isTipShow: false
+    })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '跑步小程序',
+      path: '/pages/login/login',
+      imageUrl: '../../assets/image/跑步.jpg'
     }
   }
 })

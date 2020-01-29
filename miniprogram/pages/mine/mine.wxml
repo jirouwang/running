@@ -1,11 +1,23 @@
 <!--miniprogram/pages/mine/mine.wxml-->
 <view class="user">
   <view class="user-info">
-    <view class="user-url" bindtap="showname"><open-data type="userAvatarUrl"></open-data></view>
-    <open-data type="userNickName"></open-data>
+    <view class="user-url" bindtap="showinfo"><open-data type="userAvatarUrl"></open-data></view>
+    <open-data type="userNickName" style="margin-top: 10rpx;"></open-data>
   </view>
   <view class="user-info-run">
     <text>姓名: {{name}}</text>
     <text>学号: {{studentID}}</text>
   </view>
+  <view class="echart">
+    <text class="echart-title">今日跑步情况({{date}})</text>
+    <block wx:if="{{isRanToday}}">
+      <ec-canvas id="mychart-dom-gauge" canvas-id="mychart-gauge" ec="{{ ec }}"></ec-canvas>
+      <text class="echart-des" style="color: {{hardRun? 'red': '#37a2da'}}">{{hardRun? "马力拉满,跑步达标! 明天继续!!" : "明天继续努力,加油!!!"}}</text>
+    </block>
+    <block wx:else>
+      <text class="norun">今天还未跑步哦~</text>
+    </block>
+    
+  </view>
+  <button style="background-color: rgba(0,0,0,.8);margin: 30rpx 36rpx;color: rgb(255,255,255)" bind:tap="cgUserInfo">修改学号/姓名</button>
 </view>

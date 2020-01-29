@@ -69,6 +69,20 @@
 					"id": -1,
 					"name": "pages/mine/mine",
 					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/reset/reset",
+					"pathName": "pages/reset/reset",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/checkSelf/checkSelf",
+					"pathName": "pages/checkSelf/checkSelf",
 					"scene": null
 				}
 			]

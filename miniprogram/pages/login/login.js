@@ -14,6 +14,11 @@ Page({
 
   },
 
+  onLoad: function() {
+    // console.log(getCurrentPages())
+    // console.log(app.globalData.openid)
+  },
+
   inputStudentID(event) {
     studentID = event.detail.value;
   },
@@ -60,8 +65,7 @@ Page({
       })
       return
     }  
-    app.globalData.studentID = studentID
-    app.globalData.name = name
+    
     // 查询用户是否已经登陆过
     userListDB.where({
       _openid: app.globalData.openid 
@@ -77,18 +81,28 @@ Page({
           console.log(userInfos[0].name == name)
           if (userInfos[0].name == name && userInfos[0].studentID == studentID) {
             console.log('已经登录,跳转到跑步页面')
+            wx.setStorage({
+              key: 'name',
+              data: name,
+            });
+            wx.setStorage({
+              key: 'studentID',
+              data: studentID
+            })
+            app.globalData.studentID = studentID
+            app.globalData.name = name
             this.isRanToday()
             this.getInitLocation()
           } else {
-            if (studentID == null || name == null) {
-              console.log('请输入完全')
-              wx.showModal({
-                title: '温馨提示',
-                content: '学号或姓名不能为空',
-                showCancel: false
-              })
-              return
-            }
+            // if (studentID == null || name == null) {
+            //   console.log('请输入完全')
+            //   wx.showModal({
+            //     title: '温馨提示',
+            //     content: '学号或姓名不能为空',
+            //     showCancel: false
+            //   })
+            //   return
+            // }
             console.log('请使用本人微信填写正确的学号和姓名')
             wx.showModal({
               title: '温馨提示',
@@ -123,15 +137,17 @@ Page({
   },
   saveuserinfo() {
     // let that = this;
-    if (studentID == null || name == null) {
-      console.log('请输入完全')
-      wx.showModal({
-        title: '温馨提示',
-        content: '学号或姓名不能为空',
-        showCancel: false
-      })
-      return
-    }
+    // if (studentID == null || name == null) {
+    //   console.log('请输入完全')
+    //   wx.showModal({
+    //     title: '温馨提示',
+    //     content: '学号或姓名不能为空',
+    //     showCancel: false
+    //   })
+    //   return
+    // }
+    app.globalData.studentID = studentID
+    app.globalData.name = name
     userListDB.add({
       data: {
         // openid: app.globalData.openid,
@@ -141,6 +157,14 @@ Page({
       }
     }).then(res => {
       console.log('首次登陆,跳转到跑步页面')
+      wx.setStorage({
+        key: 'name',
+        data: name,
+      });
+      wx.setStorage({
+        key: 'studentID',
+        data: studentID
+      })
       this.isRanToday()
       this.getInitLocation()
     })
@@ -164,5 +188,17 @@ Page({
         })
       }
     })
+  },
+  checkSelf() {
+    wx.navigateTo({
+      url: '../checkSelf/checkSelf',
+    })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '跑步小程序',
+      path: '/pages/login/login',
+      imageUrl: '../../assets/image/跑步.jpg'
+    }
   }
 })

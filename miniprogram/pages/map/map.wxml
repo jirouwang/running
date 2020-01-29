@@ -5,6 +5,10 @@
 </view>
 
 <view class="map-page" wx:else>
+  <view class="tip" wx:if="{{isTipShow}}">
+    <view class="out" bindtap="tipOut">X</view>
+    在户外跑步数据会更准确!
+  </view>
   <map
     longitude="{{longitude}}"
     latitude="{{latitude}}"
@@ -23,9 +27,9 @@
       </view>
     </view>
     <view class="handle-item">
-      <button wx:if="{{isPaused}}" class="handle-button" bind:tap="clickStart" style="background-color: red">开始</button>
-      <button wx:else class="handle-button" bind:tap="clickStop" style="background-color: red">暂停</button>
-      <button class="handle-button" bind:tap="clickEnd" style="background-color: blue">结束</button>
+      <button wx:if="{{isPaused}}" class="handle-button" type="priamry" bind:tap="clickStart" style="background-color: greenyellow">开始</button>
+      <button wx:else class="handle-button" bind:tap="clickStop" style="background-color: orange">暂停</button>
+      <button class="handle-button" bind:tap="clickEnd" style="background-color: red">结束</button>
     </view>
   </view>
   

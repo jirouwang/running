@@ -9,7 +9,8 @@
   </view>
 
   <!-- distance必须为number类型 -->
-  <view class="content">
+  <view wx:if="{{isFull}}" class="full-info">暂无跑步数据~</view>
+  <view class="content" wx:else>
     <view wx:for="{{userInfo}}" class="content-item" wx:key="index">
       <text style="width: 130rpx; text-align:center;" class="content-num" first>{{index+1}}</text>
       <!-- /{{item.studentID}} -->

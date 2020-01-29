@@ -1,0 +1,22 @@
+<!--miniprogram/pages/reset/reset.wxml-->
+<view class="content">
+
+  <view class="account">
+  <view class="title">新学号</view>
+  <view class="num">
+  <input bindinput="inputStudentID" placeholder="例: 160424****"/></view>
+  </view>
+  
+  <view class="hr"></view>
+
+  <view class="account">
+  <view class="title">新姓名</view>
+  <view class="name"><input bindinput="inputName" placeholder="例: 王国成"  placeholder-style="color:#999999;"/></view>
+  </view>
+
+  <view class="hr"></view>
+
+  <button class="btn" type="primary" bindtap="reset">修改</button> 
+  
+   
+</view>

@@ -71,7 +71,7 @@
   font-weight: 700;
 }
 .content-item:nth-child(2) .content-num {
-  color: rgba(0, 159, 252, 0.973);
+  color: rgba(70, 18, 129, 0.973);
   font-size: 44rpx;
   font-weight: 600;
 }
@@ -86,7 +86,7 @@
   font-weight: 700;
 }
 .content-item:nth-child(2) .content-name {
-  color: rgba(0, 159, 252, 0.973);
+  color: rgba(70, 18, 129, 0.973);
   /* font-size: 44rpx; */
   font-weight: 600;
 }
@@ -94,4 +94,11 @@
   color: rgba(243, 38, 38, 0.973);
   /* font-size: 40rpx; */
   font-weight: 550;
+}
+.full-info {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40rpx;
 }

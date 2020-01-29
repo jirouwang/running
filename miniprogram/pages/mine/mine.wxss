@@ -5,7 +5,7 @@
   position: relative;
 }
 .user-info {
-  height: 350rpx;
+  height: 245rpx;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -14,8 +14,8 @@
 }
 .user-url {
   display: inline-block;
-  width: 250rpx;
-  height: 250rpx;
+  width: 200rpx;
+  height: 200rpx;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -24,9 +24,43 @@
   justify-content: space-around;
   height: 35rpx;
   line-height: 35rpx;
-  padding: 50rpx 70rpx;
+  padding: 30rpx 70rpx;
   margin: 0 40rpx;
-  margin-top: 40rpx;
+  margin-top: 18rpx;
   border-top: 1px solid rgba(0,0,0,.2);
   border-bottom: 1px solid rgba(0,0,0,.2);
+}
+.echart {
+  height: 60vh;
+  width: 90vw;
+  margin: 25rpx auto;
+  background-color: rgba(190, 178, 178, 0.2);
+  position: relative;
+  border-radius: 50rpx 50rpx 0 0;
+  margin-bottom: 140rpx;
+}
+.echart-title {
+  display: inline-block;
+  width: 100%;
+  line-height: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  color: rgb(17, 128, 172);
+  font-size: 46rpx;
+}
+.echart-des {
+  position: absolute;
+  display: inline-block;
+  bottom: -70rpx;
+  width: 100%;
+  text-align: center;
+  color: rgb(179, 51, 51);
+}
+.norun {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  line-height: 500rpx;
+  color: red;
+  font-size: 50rpx;
 }

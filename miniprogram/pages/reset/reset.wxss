@@ -1,8 +1,10 @@
+/* miniprogram/pages/reset/reset.wxss */
 .content{
-  margin-top: 15px;
+  margin-top: 40px;
 }
 .account{
    display: flex;
+   flex-direction: row;
    padding-left: 20px;
    padding-top: 20px;
    padding-bottom: 10px;

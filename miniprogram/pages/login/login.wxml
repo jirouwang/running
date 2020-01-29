@@ -1,9 +1,15 @@
+<view style="border: 1px dashed lightblue; padding: 15rpx 10rpx;margin: 0 25rpx;">
+  <view style="font-size: 45rpx; opacity: .8;">提示:</view>
+  <view style="font-size: 32rpx;margin: 10rpx 0; opacity: .6;">*一个微信号只能绑定一个学号(10位纯数字)和一个姓名(2-4个字)</view>
+  <view style="font-size: 32rpx;margin: 10rpx 0; opacity: .6;">*未登录的用户请输入正确格式的学号和姓名直接进行登录注册</view>
+  <view style="font-size: 32rpx;margin: 10rpx 0; opacity: .6;">*已登录的用户请输入与微信号相对应的正确的学号和姓名完成登录</view>
+</view>
 <view class="content">
 
   <view class="account">
   <view class="title">学号</view>
   <view class="num">
-  <input bindinput="inputStudentID" placeholder="例: 1604240525"/></view>
+  <input bindinput="inputStudentID" placeholder="例: 160424****"/></view>
   </view>
   
   <view class="hr"></view>
@@ -17,5 +23,5 @@
 
   <button class="btn" type="primary" bindtap="login">登录</button> 
   
-   
+  <button class="btn" style="background-color: rgba(0,0,0,.7);color: rgba(255,255,255,.9); margin-top: 30rpx;" bindtap="checkSelf">忘了学号或密码</button>
 </view>

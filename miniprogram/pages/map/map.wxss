@@ -18,6 +18,36 @@
   height: 100vh;
   position: relative;
 }
+.tip {
+  position: absolute;
+  top: 100rpx;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: inline-block;
+  width: 70%;
+  height: 70rpx;
+  line-height: 72rpx;
+  text-align: center;
+  z-index: 999;
+  background-color: lightblue;
+  color: rgba(88, 51, 51, 0.8);
+  font-size: 36rpx;
+  border-radius: 20rpx;
+}
+.out {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  background-color: rgba(0,0,0,.4);
+  font-size: 16px;
+  line-height: 24px;
+  color: lightblue;
+}
 map {
   width: 100vw;
   height: 100vh;
@@ -44,12 +74,14 @@ map {
 }
 .handle-button {
   flex: 1;
+  font-size: 40rpx;
+  font-weight: 500;
 }
 .show-info-button {
   display: inline-block;
   width: 80rpx;
   height: 40rpx;
-  background-color: red;
+  background-color: rgb(4, 163, 52);
   position: absolute;
   left: 0;
   right: 0;
@@ -58,6 +90,7 @@ map {
   text-align: center;
   line-height: 35rpx;
   font-size: 50rpx;
+  font-weight: 500;
   border-radius: 10rpx 10rpx 0 0;
 }
 .head-sculpture {

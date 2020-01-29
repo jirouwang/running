@@ -1,0 +1,23 @@
+/* miniprogram/pages/checkSelf/checkSelf.wxss */
+.main {
+  width: 96vw;
+  margin: 0 auto;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+.tip {
+  margin-top: 20rpx;
+}
+input {
+  margin: 30rpx 0;
+  padding: 20rpx 10rpx;
+  border-bottom: 1px solid rgba(0,0,0,.3);
+}
+.btn {
+  align-self: center;
+}

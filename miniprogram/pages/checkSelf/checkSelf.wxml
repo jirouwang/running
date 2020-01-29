@@ -1,0 +1,21 @@
+<!--miniprogram/pages/checkSelf/checkSelf.wxml-->
+<view style="border: 1px dashed red; padding: 15rpx 10rpx;margin: 0 25rpx;">
+  <view style="font-size: 45rpx;">提示:</view>
+  <view style="font-size: 32rpx;margin: 10rpx 0;">*已经登陆过的用户才能修改学号或姓名</view>
+  <view style="font-size: 32rpx;margin: 10rpx 0;">*当您输入与微信号相对应的学号或姓名正确时才会被允许修改信息</view>
+</view>
+
+<button size="mini" style="background-color: lightblue; margin: 30rpx auto;" bindtap="handleCgState">切换验证方式</button>
+
+<view class="main" wx:if="{{!cgState}}">
+  <text class="title">验证学号</text>
+  <view class="tip">请输入正确的学号</view>
+  <input placeholder="例: 160424****" bindinput="getStudentID"/>
+  <button size="mini" type="primary" class="btn" bindtap="checkStudentID">验证</button>
+</view>
+<view class="main" wx:else>
+  <text class="title">验证姓名</text>
+  <view class="tip">请输入正确的姓名</view>
+  <input placeholder="例: 王国成" bindinput="getName"/>
+  <button size="mini" type="primary" class="btn" bindtap="checkName">验证</button>
+</view>
