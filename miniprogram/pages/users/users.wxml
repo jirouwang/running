@@ -1,6 +1,10 @@
 <!--miniprogram/pages/users/users.wxml-->
 <view class="main">
-  <view class="title"><text class="title-text" bindtap="showRunInfos">今日跑步排名({{date}})</text></view>
+  <view class="title">
+    <picker mode="date" value="{{date}}" start="2020-1-15" end="{{date}}" bindchange="bindDateChange">
+      <text class="title-text" bindtap="showRunInfos">{{chooseDate}}跑步排名</text>
+    </picker>
+  </view>
   <view class="head">
     <text style="margin-left: 30rpx;">序号</text>
     <text style="margin-left: 85rpx;" bindtap="chNameStuID">姓名/学号</text>

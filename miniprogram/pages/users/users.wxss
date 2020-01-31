@@ -18,7 +18,8 @@
 .title-text {
   display: inline-block;
   color: rgba(255,255,255,.7);
-  width: 70%;
+  /* width: 70%; */
+  padding: 0 50rpx;
   height: 100%;
   font-size: 36rpx;
   background-color: rgba(160, 153, 153,.5);

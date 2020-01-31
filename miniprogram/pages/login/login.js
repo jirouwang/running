@@ -28,6 +28,10 @@ Page({
   },
 
   getInitLocation() {
+    wx.showLoading({
+      title: '请稍等~',
+      mask: true
+    })
     wx.getLocation({
       type: 'gcj02',
       complete: (res) => {
@@ -36,6 +40,7 @@ Page({
           app.globalData.initLatitude = res.latitude
           app.globalData.isAuthorized = true
         }
+        wx.hideLoading();
 
         wx.switchTab({
           //目的页面地址

@@ -17,7 +17,7 @@ exports.main = async (event, context) => {
   // 这个distance必须是number类型
     where({
       runInfos: {
-        date: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
+        date: event.date
       }
     }).orderBy('runInfos.distance', 'desc').get()
   // return {

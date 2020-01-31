@@ -36,8 +36,9 @@ App({
           if(res.data.length!=0) {
             this.globalData.studentID = res.data[0].studentID,
             this.globalData.name = res.data[0].name
+            console.log(res.data[0].studentID, res.data[0].name)
           }
-          console.log(res.data[0].studentID, res.data[0].name)
+          
         })
       },
       fail: err => {

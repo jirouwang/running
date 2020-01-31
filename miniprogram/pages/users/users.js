@@ -4,6 +4,27 @@ let app = getApp();
 const db = wx.cloud.database();
 const userListDB = db.collection('user');
 
+
+function formatDate(date) {
+  let newDates = date.replace(/-/g, '/')
+  let month = date.substring(5, 6);
+  let day = date.substring(8, 9);
+  console.log(month,day)
+  if (month == 0) {
+    let newMonth = newDates.substring(0,5);
+    let newDate = newDates.substring(6,10);
+    console.log(newMonth+newDate)
+    return newMonth + newDate
+  }
+  if (day == 0) {
+    let newMonth = newDates.substring(0, 8);
+    let newDate = newDates.substring(9, 10);
+    console.log(newMonth + newDate)
+    return newMonth + newDate
+  }
+  return newDates
+}
+
 Page({
 
   /**
@@ -11,6 +32,7 @@ Page({
    */
   data: {
     date: '',
+    chooseDate: '',
     userInfo: [],
     isFull: false,
     showName: true
@@ -24,20 +46,29 @@ Page({
   onLoad: function (options) {
     wx.stopPullDownRefresh()
     this.setData({
-      date: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
+      date: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`,
+      chooseDate: `${new Date().getFullYear()}/${new Date().getMonth() + 1}/${new Date().getDate()}`
     })
     console.log('sortruninfo')
     wx.showLoading({
       title: '正在拉取数据',
       mask: true
     })
+    console.log(this.data.date)
+    this.getSortRunInfo(this.data.date)
+  },
+
+  getSortRunInfo(date) {
+    console.log(date)
     wx.cloud.callFunction({
       name: 'getSortRunInfo',
-      data: {},
+      data: {
+        date: date
+      },
       success: res => {
         let data = res.result.data
         console.log(data)
-        if(data.length == 0) {
+        if (data.length == 0) {
           this.setData({
             isFull: true
           })
@@ -69,6 +100,19 @@ Page({
       showName: !this.data.showName
     })
   },
+  bindDateChange(e) {
+    wx.showLoading({
+      title: '正在拉取数据',
+      mask: true
+    })
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    let newDate = formatDate(e.detail.value)
+    this.setData({
+      chooseDate: newDate
+    })
+    this.getSortRunInfo(newDate);
+  },
+
   onPullDownRefresh() {
     this.onLoad();
   },

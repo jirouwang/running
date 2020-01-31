@@ -23,5 +23,5 @@
 
   <button class="btn" type="primary" bindtap="login">登录</button> 
   
-  <button class="btn" style="background-color: rgba(0,0,0,.7);color: rgba(255,255,255,.9); margin-top: 30rpx;" bindtap="checkSelf">忘了学号或密码</button>
+  <button class="btn" style="background-color: rgba(0,0,0,.7);color: rgba(255,255,255,.9); margin-top: 30rpx;" bindtap="checkSelf">忘了学号或姓名</button>
 </view>
