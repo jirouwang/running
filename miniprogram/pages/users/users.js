@@ -4,7 +4,8 @@ let app = getApp();
 const db = wx.cloud.database();
 const userListDB = db.collection('user');
 
-
+// 因为timepicker的时间格式为2020-01-31
+// 而我需要的格式为2020/1/31,所以需要格式化
 function formatDate(date) {
   let newDates = date.replace(/-/g, '/')
   let month = date.substring(5, 6);
@@ -31,10 +32,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 当天的时间
     date: '',
+    // 用户选择的时间
     chooseDate: '',
     userInfo: [],
     isFull: false,
+    // 学号与姓名的切换状态
     showName: true
   },
   // onshow: function () {

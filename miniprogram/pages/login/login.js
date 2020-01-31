@@ -27,6 +27,7 @@ Page({
     name = event.detail.value;
   },
 
+  // 初始化map的经纬点并跳转到map
   getInitLocation() {
     wx.showLoading({
       title: '请稍等~',
@@ -53,6 +54,7 @@ Page({
       }
     })
   },
+
   login() {
     let studentIDReg = /^160424[0-9]{4}$/;
     let nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
@@ -80,10 +82,13 @@ Page({
         // console.log(1)
         // 不同微信第一次登录注册的时候没有检测学号和姓名是否重复!!!!!!!!!
         // 可以另外写一个utils文件写查重的功能
+        
+        // 根据openid又返回的信息,证明之前登陆注册过
         if (userInfos && userInfos.length > 0) {
           console.log(2)
           console.log(userInfos)
           console.log(userInfos[0].name == name)
+          // 如果输入的学号姓名与数据库里的对应则允许登陆
           if (userInfos[0].name == name && userInfos[0].studentID == studentID) {
             console.log('已经登录,跳转到跑步页面')
             wx.setStorage({
@@ -116,6 +121,7 @@ Page({
             })
           }
           // 这里加checkUserInfo的判断
+          // 第一次登录注册,检测学号和姓名的重复性
         } else {
           let res = checkUserInfo(studentID,name)
           res.then((res)=>{
@@ -132,6 +138,7 @@ Page({
                 content: '姓名已被注册',
                 showCancel: false
               })
+              // 学号和姓名不重复,则注册成功,将学号和姓名存入数据库
             } else {
               this.saveuserinfo();
             } 
@@ -174,6 +181,8 @@ Page({
       this.getInitLocation()
     })
   },
+
+  // 检测当天是否跑过了
   isRanToday() {
     userListDB.where({
       _openid: app.globalData.openid,
