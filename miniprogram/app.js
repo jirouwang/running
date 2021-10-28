@@ -24,27 +24,27 @@ App({
     // })
     console.log(456)
 
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        this.globalData.openid = res.result.openid
-        // console.log(res.result.openid)
-        userListDB.where({
-          _openid: res.result.openid
-        }).get().then(res => {
-          if(res.data.length!=0) {
-            this.globalData.studentID = res.data[0].studentID,
-            this.globalData.name = res.data[0].name
-            console.log(res.data[0].studentID, res.data[0].name)
-          }
+    // wx.cloud.callFunction({
+    //   name: 'login',
+    //   data: {},
+    //   success: res => {
+    //     this.globalData.openid = res.result.openid
+    //     // console.log(res.result.openid)
+    //     userListDB.where({
+    //       _openid: res.result.openid
+    //     }).get().then(res => {
+    //       if(res.data.length!=0) {
+    //         this.globalData.studentID = res.data[0].studentID,
+    //         this.globalData.name = res.data[0].name
+    //         console.log(res.data[0].studentID, res.data[0].name)
+    //       }
           
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
+    //     })
+    //   },
+    //   fail: err => {
+    //     console.error('[云函数] [login] 调用失败', err)
+    //   }
+    // })
     
   }
 
