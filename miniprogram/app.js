@@ -18,7 +18,7 @@ App({
       checkRunningToday: false,
     }
 
-    // console.log(123)
+    console.log(123)
     // wx.switchTab({
     //   url: '../pages/map/map',
     // })
