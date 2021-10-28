@@ -16,7 +16,6 @@ App({
       initLatitude: 0,
       isAuthorized: false,
       checkRunningToday: false,
-      name: 111
     }
 
     // console.log(123)
